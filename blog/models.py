@@ -1,11 +1,14 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
+from .managers import PostManager
 
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='liked_posts')
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
@@ -17,3 +20,5 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    objects = PostManager()
