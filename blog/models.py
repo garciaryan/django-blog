@@ -2,9 +2,11 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from .managers import PostManager
+from django.core.urlresolvers import reverse
 
 
 class Post(models.Model):
+
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
@@ -20,5 +22,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=(self.id,))
 
     objects = PostManager()

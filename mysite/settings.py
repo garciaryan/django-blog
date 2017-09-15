@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_select2',
     'blog',
-    'rest_framework'
+    'rest_framework',
+    'background_task'
 ]
 
 MIDDLEWARE = [

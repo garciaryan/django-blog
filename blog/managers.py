@@ -7,7 +7,7 @@ class CatalogRecordQuerySet(models.QuerySet):
 
     def active(self):
         return self.exclude(published_date__year=
-            2017,
+            2018,
         )
 
     def published(self):
